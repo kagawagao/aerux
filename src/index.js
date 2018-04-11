@@ -1,5 +1,6 @@
-import _createStore, { makeRootReducer } from './store'
+import _createStore from './store'
 import _createModel from './model'
+import connect from './connect'
 
 let store
 
@@ -27,5 +28,5 @@ export const createModel = (options = {}) => {
 export default {
   createStore,
   createModel,
-  makeRootReducer
+  connect
 }
