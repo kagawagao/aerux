@@ -1,10 +1,5 @@
 import { applyMiddleware, createStore, compose as reduxCompose, combineReducers } from 'redux'
 
-// make root reducer
-export const makeRootReducer = (initialReducers = {}) => {
-  return combineReducers(initialReducers)
-}
-
 export default ({
   middlewares = [],
   enhancers = [],
@@ -12,20 +7,33 @@ export default ({
   initialState = {},
   compose = reduxCompose
 }) => {
+  // make root reducer
+  const makeRootReducer = (asyncReducers = {}) => {
+    return combineReducers({
+      ...initialReducers,
+      ...asyncReducers
+    })
+  }
+
   const store = createStore(makeRootReducer(), initialState, compose(
     applyMiddleware(...middlewares),
     ...enhancers
   ))
 
   // initial reducers
-  store.reducers = initialReducers
+  store.asyncReducers = {}
 
   // inject reducer
   store.injectReducer = (key, reducer) => {
-    if (Object.hasOwnProperty.call(store.reducers, key)) return
+    if (Object.hasOwnProperty.call(store.asyncReducers, key)) return
 
-    store.reducers[key] = reducer
-    store.replaceReducer(makeRootReducer(store.reducers))
+    store.asyncReducers[key] = reducer
+    store.replaceReducer(makeRootReducer(store.asyncReducers))
+  }
+
+  // for HMR
+  store.hotReplaceReducer = (reducers) => {
+    store.replaceReducer(makeRootReducer(reducers))
   }
 
   return store

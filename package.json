@@ -1,5 +1,5 @@
 {
-  "name": "erux",
+  "name": "aerux",
   "version": "1.0.0-beta.0",
   "description": "An easy way to use redux with react",
   "main": "lib/index.js",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kagawagao/erux.git"
+    "url": "git+https://github.com/kagawagao/aerux.git"
   },
   "keywords": [],
   "author": {
@@ -26,9 +26,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kagawagao/erux/issues"
+    "url": "https://github.com/kagawagao/aerux/issues"
   },
-  "homepage": "https://github.com/kagawagao/erux#readme",
+  "homepage": "https://github.com/kagawagao/aerux#readme",
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.44",
     "@babel/core": "^7.0.0-beta.44",
@@ -43,11 +43,11 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-react": "^7.7.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "react": "^16.3.1"
   },
   "dependencies": {
     "lodash": "^4.17.5",
-    "react": "^16.3.1",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
     "redux-actions": "^2.3.0"
