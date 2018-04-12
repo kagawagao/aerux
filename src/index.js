@@ -1,6 +1,6 @@
 import _createStore from './store'
 import _createModel from './model'
-import connect from './connect'
+import _connect from './connect'
 
 let store
 
@@ -24,6 +24,8 @@ export const createModel = (options = {}) => {
     store
   })
 }
+
+export const connect = _connect
 
 export default {
   createStore,
