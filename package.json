@@ -1,6 +1,6 @@
 {
   "name": "aerux",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An easy way to use redux with react",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -22,7 +22,11 @@
     "type": "git",
     "url": "git+https://github.com/kagawagao/aerux.git"
   },
-  "keywords": ["redux", "react-redux", "redux-actions"],
+  "keywords": [
+    "redux",
+    "react-redux",
+    "redux-actions"
+  ],
   "author": {
     "name": "kagawagao",
     "email": "kingsongao1221@gmail.com",
