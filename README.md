@@ -70,7 +70,7 @@ createStore({
   enhancers,
   compose,
   initialState,
-  initialReducers
+  globalReducers
 })
 ```
 
@@ -80,7 +80,7 @@ createStore({
 | `enhancers` | redux enhancer | `Array` | `[]` | `true` |
 | `compose` | used for redux devtool | - | `redux.compose` | `true` |
 | `initialState` | initialState | `Object` | `{}` | `true` |
-| `initialReducers` | global reducer | valid redux reducers | `{}` | `true` |
+| `globalReducers` | global reducers | valid redux reducers | `{}` | `true` |
 
 ### `createModel`
 

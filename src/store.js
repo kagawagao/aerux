@@ -1,21 +1,29 @@
 import { applyMiddleware, createStore, compose as reduxCompose, combineReducers } from 'redux'
+import isEmpty from 'lodash/isEmpty'
 
 export default ({
   middlewares = [],
   enhancers = [],
-  initialReducers = {},
+  globalReducers = {},
   initialState = {},
   compose = reduxCompose
 }) => {
   // make root reducer
   const makeRootReducer = (asyncReducers = {}) => {
     return combineReducers({
-      ...initialReducers,
+      ...globalReducers,
       ...asyncReducers
     })
   }
 
-  const store = createStore(makeRootReducer(), initialState, compose(
+  let reducer
+  if (isEmpty(globalReducers)) {
+    reducer = (state) => state
+  } else {
+    reducer = makeRootReducer()
+  }
+
+  const store = createStore(reducer, initialState, compose(
     applyMiddleware(...middlewares),
     ...enhancers
   ))
