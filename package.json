@@ -22,7 +22,7 @@
     "type": "git",
     "url": "git+https://github.com/kagawagao/aerux.git"
   },
-  "keywords": [],
+  "keywords": ["redux", "react-redux", "redux-actions"],
   "author": {
     "name": "kagawagao",
     "email": "kingsongao1221@gmail.com",
