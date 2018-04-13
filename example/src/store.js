@@ -29,7 +29,7 @@ const store = createStore({
   enhancers,
   compose: composeWithEnhancer,
   initialState,
-  globalReducers: {}
+  initialReducers: {}
 })
 
 export default store
