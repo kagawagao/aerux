@@ -4,20 +4,20 @@ import isEmpty from 'lodash/isEmpty'
 export default ({
   middlewares = [],
   enhancers = [],
-  globalReducers = {},
+  initialReducers = {},
   initialState = {},
   compose = reduxCompose
 }) => {
   // make root reducer
   const makeRootReducer = (asyncReducers = {}) => {
     return combineReducers({
-      ...globalReducers,
+      ...initialReducers,
       ...asyncReducers
     })
   }
 
   let reducer
-  if (isEmpty(globalReducers)) {
+  if (isEmpty(initialReducers)) {
     reducer = (state) => state
   } else {
     reducer = makeRootReducer()
