@@ -10,7 +10,7 @@ export const createStore = ({
   initialReducers = {},
   initialState = {},
   compose
-}) => {
+} = {}) => {
   if (!store) {
     store = _createStore({middlewares, enhancers, initialReducers, initialState, compose})
   }

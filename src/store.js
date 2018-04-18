@@ -7,7 +7,7 @@ export default ({
   initialReducers = {},
   initialState = {},
   compose = reduxCompose
-}) => {
+} = {}) => {
   // make root reducer
   const makeRootReducer = (asyncReducers = {}) => {
     return combineReducers({

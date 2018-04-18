@@ -3,7 +3,6 @@ import { flattenActionMap } from 'redux-actions/lib/flattenUtils'
 import isString from 'lodash/isString'
 import isArray from 'lodash/isArray'
 import isEmpty from 'lodash/isEmpty'
-import isNil from 'lodash/isNil'
 import isPlainObject from 'lodash/isPlainObject'
 
 const defaultAction = (payload) => payload
@@ -12,19 +11,12 @@ const defaultReducer = (state, { payload }) => payload
 
 const createModel = ({
   namespace,
-  state,
-  actions,
+  state = null,
+  actions = {},
   reducers,
   store
-}) => {
-  if (isNil(state)) {
-    state = null
-  }
-
+} = {}) => {
   let tempActions = {}
-  if (isNil(actions)) {
-    tempActions = {}
-  }
 
   if (isString(actions)) {
     actions = [actions]

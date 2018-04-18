@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --no-cache",
     "prebuild": "npm run lint",
     "build": "npm run build:es && npm run build:cjs",
     "build:es": "babel src -d es",
@@ -42,7 +42,9 @@
     "@babel/core": "^7.0.0-beta.44",
     "@babel/preset-env": "^7.0.0-beta.44",
     "@babel/preset-stage-0": "^7.0.0-beta.44",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^8.2.2",
+    "babel-jest": "^22.4.3",
     "babel-plugin-add-module-exports": "^0.2.1",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
@@ -53,6 +55,7 @@
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-react": "^7.7.0",
     "eslint-plugin-standard": "^3.0.1",
+    "jest": "^22.4.3",
     "react": "^16.3.1"
   },
   "dependencies": {
