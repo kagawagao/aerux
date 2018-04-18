@@ -4,5 +4,16 @@
       "modules": false
     }],
     "@babel/preset-stage-0"
-  ]
+  ],
+  "env": {
+    "commonjs": {
+      "presets": [
+        "@babel/preset-env",
+        "@babel/preset-stage-0"
+      ],
+      "plugins": [
+        "add-module-exports"
+      ]
+    }
+  }
 }

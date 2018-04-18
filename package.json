@@ -9,7 +9,7 @@
     "prebuild": "npm run lint",
     "build": "npm run build:es && npm run build:cjs",
     "build:es": "babel src -d es",
-    "build:cjs": "babel src -d lib --no-babelrc --presets=@babel/preset-env,@babel/preset-stage-0 --plugins=add-module-exports",
+    "build:cjs": "BABEL_ENV=commonjs babel src -d lib",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "prepare": "npm run build"
