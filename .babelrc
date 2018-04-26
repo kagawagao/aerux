@@ -3,13 +3,17 @@
     ["@babel/preset-env", {
       "modules": false
     }],
-    "@babel/preset-stage-0"
+    ["@babel/preset-stage-0", {
+      "decoratorsLegacy": true
+    }]
   ],
   "env": {
     "commonjs": {
       "presets": [
         "@babel/preset-env",
-        "@babel/preset-stage-0"
+        ["@babel/preset-stage-0", {
+          "decoratorsLegacy": true
+        }]
       ],
       "plugins": [
         "add-module-exports"
@@ -18,7 +22,9 @@
     "test": {
       "presets": [
         "@babel/preset-env",
-        "@babel/preset-stage-0"
+        ["@babel/preset-stage-0", {
+          "decoratorsLegacy": true
+        }]
       ],
       "plugins": [
         "add-module-exports"
