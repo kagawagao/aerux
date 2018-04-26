@@ -1,4 +1,4 @@
-import { createActions, handleActions } from 'redux-actions'
+import { createAction, createActions, handleActions } from 'redux-actions'
 import { flattenActionMap } from 'redux-actions/lib/flattenUtils'
 import isString from 'lodash/isString'
 import isArray from 'lodash/isArray'
@@ -56,6 +56,10 @@ const createModel = ({
 
   if (namespace && store && typeof store.injectReducer === 'function') {
     store.injectReducer(namespace, reducer)
+    // create initial state action
+    const initialStateAction = createAction(`${namespace}/@@INIT`)
+    // initial state
+    store.dispatch(initialStateAction())
   }
 
   return {
