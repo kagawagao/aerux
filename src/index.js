@@ -18,12 +18,7 @@ export const createStore = ({
   return store
 }
 
-export const createModel = (options = {}) => {
-  return _createModel({
-    ...options,
-    store
-  })
-}
+export const createModel = (model) => _createModel(model, store)
 
 export const connect = _connect
 

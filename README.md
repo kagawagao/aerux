@@ -94,6 +94,8 @@ createStore({
 
 ### `createModel`
 
+> create model with `redux-actions`
+
 ```js
 const { actions, reducer } = createModel({
   namespace,
@@ -127,6 +129,8 @@ const { actions, reducer } = createModel({
   ```
 
 ### `connect`
+
+> connect store and component like `redux.connect`, but much better
 
 ```js
 connect(mapStateToProps, actions)(Component)

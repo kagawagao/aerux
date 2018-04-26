@@ -3,10 +3,18 @@ import createModel from '../src/model'
 
 describe('model.js', () => {
   test('normal create model', () => {
-    const { actions, reducer } = createModel()
+    const { actions } = createModel({
+      state: 1,
+      actions: 'test'
+    })
 
-    expect(actions).toEqual({})
-    expect(reducer(1)).toBe(1)
+    expect(actions).toHaveProperty('test')
+  })
+
+  test('should throw error with empty model', () => {
+    expect(() => {
+      createModel()
+    }).toThrow('Invalid `model` present')
   })
 
   test('create model with initial state', () => {

@@ -9,13 +9,17 @@ const defaultAction = (payload) => payload
 
 const defaultReducer = (state, { payload }) => payload
 
-const createModel = ({
-  namespace,
-  state = null,
-  actions = {},
-  reducers,
-  store
-} = {}) => {
+const createModel = (model, store) => {
+  if (!isPlainObject(model)) {
+    throw new TypeError('Invalid `model` present')
+  }
+  let {
+    namespace,
+    state = null,
+    actions = {},
+    reducers
+  } = model
+
   let tempActions = {}
 
   if (isString(actions)) {
