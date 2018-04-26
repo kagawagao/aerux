@@ -50,10 +50,6 @@ const createModel = ({
 
   const reducer = handleActions(reducers, state)
 
-  if (process.env.NODE_ENV === 'development' && !store) {
-    console.warn('Maybe you called `createModel` before `createStore`, this reducer will be not auto injected, you should inject yourself')
-  }
-
   if (namespace && store && typeof store.injectReducer === 'function') {
     store.injectReducer(namespace, reducer)
     // create initial state action
