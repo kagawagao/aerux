@@ -1,5 +1,5 @@
 import { createAction, createActions, handleActions } from 'redux-actions'
-import { flattenActionMap } from 'redux-actions/lib/flattenUtils'
+import flattenActionMap from 'redux-actions/lib/utils/flattenActionMap'
 import isString from 'lodash/isString'
 import isArray from 'lodash/isArray'
 import isEmpty from 'lodash/isEmpty'
