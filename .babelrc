@@ -5,7 +5,8 @@
     }],
     ["@babel/preset-stage-0", {
       "decoratorsLegacy": true
-    }]
+    }],
+    "@babel/preset-react"
   ],
   "env": {
     "commonjs": {
@@ -13,7 +14,8 @@
         "@babel/preset-env",
         ["@babel/preset-stage-0", {
           "decoratorsLegacy": true
-        }]
+        }],
+        "@babel/preset-react"
       ],
       "plugins": [
         "add-module-exports"
@@ -24,7 +26,8 @@
         "@babel/preset-env",
         ["@babel/preset-stage-0", {
           "decoratorsLegacy": true
-        }]
+        }],
+        "@babel/preset-react"
       ],
       "plugins": [
         "add-module-exports"
