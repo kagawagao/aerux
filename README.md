@@ -5,9 +5,6 @@
 [![license](https://img.shields.io/npm/l/aerux.svg)](https://github.com/kagawagao/aerux/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/kagawagao/aerux.svg?branch=master)](https://travis-ci.org/kagawagao/aerux)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
-[![bitHound Overall Score](https://www.bithound.io/github/kagawagao/aerux/badges/score.svg)](https://www.bithound.io/github/kagawagao/aerux)
-[![bitHound Dependencies](https://www.bithound.io/github/kagawagao/aerux/badges/dependencies.svg)](https://www.bithound.io/github/kagawagao/aerux/master/dependencies/npm)
-[![bitHound Dev Dependencies](https://www.bithound.io/github/kagawagao/aerux/badges/devDependencies.svg)](https://www.bithound.io/github/kagawagao/aerux/master/dependencies/npm)
 [![Coverage Status](https://coveralls.io/repos/github/kagawagao/aerux/badge.svg?branch=master)](https://coveralls.io/github/kagawagao/aerux?branch=master)
 
 An easy way to use redux with react
