@@ -22,7 +22,7 @@ describe('model.js', () => {
       state: 1
     })
 
-    const createStore = require('../src/store')
+    const createStore = require('../src/store').default
 
     const store = createStore({
       initialReducers: {
@@ -45,7 +45,7 @@ describe('model.js', () => {
         add: state => state + 1
       }
     })
-    const createStore = require('../src/store')
+    const createStore = require('../src/store').default
 
     const store = createStore({
       initialReducers: {

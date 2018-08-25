@@ -1,6 +1,6 @@
 describe('index.js', () => {
   test('should export correct', () => {
-    const { createModel, createStore, connect } = require('../src')
+    const { createModel, createStore, connect } = require('../src').default
 
     expect(typeof createModel).toBe('function')
     expect(typeof createStore).toBe('function')
@@ -17,7 +17,7 @@ describe('index.js', () => {
   })
 
   test('auto inject reducer after create store in create model', () => {
-    const { createModel, createStore } = require('../src')
+    const { createModel, createStore } = require('../src').default
 
     const store = createStore()
 
@@ -32,7 +32,7 @@ describe('index.js', () => {
   })
 
   test('no duplicate inject', () => {
-    const { createModel, createStore } = require('../src')
+    const { createModel, createStore } = require('../src').default
 
     const store = createStore()
 
