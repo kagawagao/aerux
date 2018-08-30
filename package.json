@@ -1,6 +1,6 @@
 {
   "name": "aerux",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "An easy way to use redux with react",
   "main": "lib/index.js",
   "module": "es/index.js",
