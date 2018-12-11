@@ -12,7 +12,7 @@ export const createStore = ({
   compose
 } = {}) => {
   if (!store) {
-    store = _createStore({middlewares, enhancers, initialReducers, initialState, compose})
+    store = _createStore({ middlewares, enhancers, initialReducers, initialState, compose })
   }
 
   return store

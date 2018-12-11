@@ -55,4 +55,34 @@ describe('store.js', () => {
 
     expect(mock).toHaveBeenCalled()
   })
+
+  test('hot replace', () => {
+    const store = createStore({
+      initialReducers: {
+        test: (state = {}, { type, payload }) => {
+          return type === 'test' ? payload : state
+        }
+      }
+    })
+
+    store.dispatch({
+      type: 'test',
+      payload: 'a'
+    })
+
+    expect(store.getState()).toHaveProperty('test', 'a')
+
+    store.hotReplaceReducer({
+      test1: (state = {}, { type, payload }) => {
+        return type === 'test1' ? payload : state
+      }
+    })
+
+    store.dispatch({
+      type: 'test1',
+      payload: 'b'
+    })
+
+    expect(store.getState()).toHaveProperty('test1', 'b')
+  })
 })
