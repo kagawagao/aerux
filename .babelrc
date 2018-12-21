@@ -3,7 +3,8 @@
     ["@babel/preset-env", {
       "modules": false
     }],
-    "@babel/preset-react"
+    "@babel/preset-react",
+    "@babel/preset-flow"
   ],
   "plugins": [
     "@babel/transform-runtime"
