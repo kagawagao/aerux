@@ -1,4 +1,13 @@
-import { applyMiddleware, createStore, compose as reduxCompose, combineReducers } from 'redux'
+// @flow
+import {
+  applyMiddleware,
+  createStore,
+  compose as reduxCompose,
+  combineReducers,
+  type Store,
+  type Reducer,
+  type ReducersMapObject
+} from 'redux'
 import isEmpty from 'lodash/isEmpty'
 
 export default ({
@@ -7,9 +16,9 @@ export default ({
   initialReducers = {},
   initialState = {},
   compose = reduxCompose
-} = {}) => {
+}: StoreOption = {}): Store => {
   // make root reducer
-  const makeRootReducer = (asyncReducers = {}) => {
+  const makeRootReducer = (asyncReducers: ReducersMapObject = {}): Reducer => {
     return combineReducers({
       ...initialReducers,
       ...asyncReducers
@@ -32,7 +41,7 @@ export default ({
   store.asyncReducers = {}
 
   // inject reducer
-  store.injectReducer = (key, reducer) => {
+  store.injectReducer = (key: string, reducer: Function): void => {
     if (Object.hasOwnProperty.call(store.asyncReducers, key)) return
 
     store.asyncReducers[key] = reducer
@@ -40,7 +49,7 @@ export default ({
   }
 
   // for HMR
-  store.hotReplaceReducer = (reducers) => {
+  store.hotReplaceReducer = (reducers: ReducersMapObject): void => {
     store.replaceReducer(makeRootReducer(reducers))
   }
 

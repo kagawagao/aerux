@@ -2,11 +2,13 @@
     "parser": "babel-eslint",
     "extends": [
       "standard",
-      "standard-react"
+      "standard-react",
+      "plugin:flowtype/recommended"
     ],
     "plugins": [
       "babel",
-      "react"
+      "react",
+      "flowtype"
     ],
     "rules": {
       "quotes": ["error", "single"],

@@ -1,7 +1,12 @@
-import { connect as _connect } from 'react-redux'
+// @flow
+import {
+  connect as _connect,
+  type Connect,
+  type MapStateToProps
+} from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-const connect = (mapStateToProps = () => ({}), actions = {}) => {
+const connect = (mapStateToProps: MapStateToProps = () => ({}), actions: Object = {}): Connect => {
   return _connect(mapStateToProps, dispatch => bindActionCreators(actions, dispatch))
 }
 
