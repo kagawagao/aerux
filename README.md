@@ -36,7 +36,7 @@ export const { actions, reducer } = createModel({
   }],
   reducers: {
     'plus': (state, { payload }) => state + payload,
-    'minus': (state, { payload }) => state - count
+    'minus': (state, { payload }) => state - payload
   }
 })
 
@@ -52,7 +52,7 @@ class Count extends React.Component {
 
 export default connect(state => ({
   count: state.count
-}), actions)
+}), actions)(Count)
 
 // App.jsx
 import { Provider } from 'react-redux'
