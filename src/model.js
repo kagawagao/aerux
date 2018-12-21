@@ -1,12 +1,10 @@
 // @flow
 import { createAction, createActions, handleActions } from 'redux-actions'
 import flattenActionMap from 'redux-actions/lib/utils/flattenActionMap'
-import isString from 'lodash/isString'
-import isArray from 'lodash/isArray'
 import isEmpty from 'lodash/isEmpty'
 import isPlainObject from 'lodash/isPlainObject'
 
-import { type Store, type ReducersMapObject } from 'redux'
+import { type Store, type Reducer } from 'redux'
 
 const defaultAction = (payload) => payload
 
@@ -14,7 +12,7 @@ const defaultReducer = (state, { payload }) => payload
 
 const createModel = (model: Model, store: Store): {
   actions: Map<string, Function>,
-  reducer: ReducersMapObject
+  reducer: Reducer
 } => {
   if (!isPlainObject(model)) {
     throw new TypeError('Invalid `model` present')
@@ -30,15 +28,13 @@ const createModel = (model: Model, store: Store): {
     [x: string]: any
   } = {}
 
-  let actionArr: Array<any> = []
-
-  if (isString(actions)) {
-    actionArr = [actions]
+  if (typeof actions === 'string') {
+    actions = [actions]
   }
 
-  if (isArray(actions)) {
-    actionArr.forEach((action) => {
-      if (isString(action)) {
+  if (Array.isArray(actions)) {
+    actions.forEach((action) => {
+      if (typeof action === 'string') {
         tempActions[action] = defaultAction
       } else if (isPlainObject(action)) {
         tempActions = { ...tempActions, ...action }

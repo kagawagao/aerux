@@ -105,4 +105,12 @@ describe('model.js', () => {
 
     expect(actions.xxx).not.toBeDefined()
   })
+
+  test('create model with invalid reducer', () => {
+    const { reducer } = createModel({
+      reducers: []
+    })
+
+    expect(typeof reducer).toBe('function')
+  })
 })

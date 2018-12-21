@@ -4,7 +4,7 @@ import _createStore from './store'
 import _createModel from './model'
 import _connect from './connect'
 
-import type Store from 'redux'
+import { type Store, type Reducer } from 'redux'
 
 let store
 
@@ -24,7 +24,7 @@ export const createStore = ({
 
 export const createModel = (model: Model): {
   actions: Map<string, Function>,
-  reducer: ReducersMapObject
+  reducer: Reducer
 } => _createModel(model, store)
 
 export const connect = _connect
