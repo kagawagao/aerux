@@ -108,7 +108,7 @@ const { actions, reducer } = createModel({
 | `namespace` | namespace | `string` | `undefined` | `true`|
 | `state` | initial state | `*` | `null` | `true` |
 | `actions` | redux actions | `string` \| `Array<string>` \| `Map<string, function>` | `{}` | `true` |
-| `reducers` | action handlers | `Map<key, function>` | `{}` | `true` |
+| `reducers` | action handlers | `Map<string, function>` | `{}` | `true` |
 
 #### Notes
 
