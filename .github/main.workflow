@@ -1,9 +1,15 @@
 workflow "Test and build on push" {
   on = "push"
-  resolves = ["GitHub Action for npm"]
+  resolves = ["Test and build"]
 }
 
-action "GitHub Action for npm" {
+action "Install dependencies" {
   uses = "actions/npm@e7aaefe"
+  args = "install"
+}
+
+action "Test and build" {
+  uses = "actions/npm@e7aaefe"
+  needs = ["Install dependencies"]
   args = "run build"
 }
