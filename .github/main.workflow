@@ -5,5 +5,5 @@ workflow "Test and build on push" {
 
 action "GitHub Action for npm" {
   uses = "actions/npm@e7aaefe"
-  args = "build"
+  args = "run build"
 }
