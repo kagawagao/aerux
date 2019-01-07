@@ -14,7 +14,6 @@
     "lint": "eslint ./src && flow",
     "lint:fix": "eslint ./src --fix",
     "flow": "flow",
-    "prepare": "npm run build",
     "preversion": "npm run test",
     "coverage": "npm run test && cat ./coverage/lcov.info | coveralls",
     "publishOnly": "npm run build"
