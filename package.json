@@ -17,7 +17,7 @@
     "prepare": "npm run build",
     "preversion": "npm run test",
     "coverage": "npm run test && cat ./coverage/lcov.info | coveralls",
-    "prepublish": "npm run build"
+    "publishOnly": "npm run build"
   },
   "files": [
     "lib",
