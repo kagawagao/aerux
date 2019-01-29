@@ -78,14 +78,6 @@ describe('model.js', () => {
     expect(typeof actions.test).toBe('function')
   })
 
-  test('create model with string action', () => {
-    const { actions } = createModel({
-      actions: 'test'
-    })
-
-    expect(typeof actions.test).toBe('function')
-  })
-
   test('create model with action map', () => {
     const { actions } = createModel({
       actions: {
