@@ -1,6 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import renderer from 'react-test-renderer'
+import renderer, { act } from 'react-test-renderer'
 
 class TestCase extends React.Component {
   render () {
@@ -39,7 +39,9 @@ describe('connect', () => {
     expect(testInstance.findByType(TestCase).props.test).toBe(1)
     expect(typeof testInstance.findByType(TestCase).props.add).toBe('function')
 
-    testInstance.findByType(TestCase).props.add()
+    act(() => {
+      testInstance.findByType(TestCase).props.add()
+    })
     expect(testInstance.findByType(TestCase).props.test).toBe(2)
   })
 
