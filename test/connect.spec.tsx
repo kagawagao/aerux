@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import renderer, { act } from 'react-test-renderer'
 
 class TestCase extends React.Component {
-  render () {
+  render() {
     return <div>Test Case</div>
   }
 }
@@ -22,9 +22,12 @@ describe('connect', () => {
       }
     })
 
-    const Test = connect(state => ({
-      test: state.test
-    }), actions)(TestCase)
+    const Test = connect(
+      state => ({
+        test: state.test
+      }),
+      actions
+    )(TestCase)
 
     const testRenderer = renderer.create(
       <Provider store={store}>

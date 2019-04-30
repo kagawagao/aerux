@@ -1,14 +1,32 @@
-// @flow
 import {
   applyMiddleware,
   createStore,
   compose as reduxCompose,
   combineReducers,
-  type Store,
-  type Reducer,
-  type ReducersMapObject
+  Store,
+  Reducer,
+  ReducersMapObject
 } from 'redux'
 import isEmpty from 'lodash/isEmpty'
+
+export interface StoreOption {
+  middlewares?: any[]
+  enhancers?: any[]
+  initialReducers?: ReducersMapObject
+  initialState?: any
+  compose?: any
+}
+
+export interface AeruxStore extends Store {
+  asyncReducers: any
+  injectReducer: (key: string, reducer: any) => void
+  hotReplaceReducer: (reducers: ReducersMapObject) => void
+  actions: {
+    [namespace: string]: {
+      [type: string]: Function
+    }
+  }
+}
 
 export default ({
   middlewares = [],
@@ -16,7 +34,7 @@ export default ({
   initialReducers = {},
   initialState = {},
   compose = reduxCompose
-}: StoreOption = {}): Store => {
+}: StoreOption = {}): AeruxStore => {
   // make root reducer
   const makeRootReducer = (asyncReducers: ReducersMapObject = {}): Reducer => {
     return combineReducers({
@@ -27,15 +45,19 @@ export default ({
 
   let reducer
   if (isEmpty(initialReducers)) {
-    reducer = (state) => state
+    reducer = state => state
   } else {
     reducer = makeRootReducer()
   }
 
-  const store = createStore(reducer, initialState, compose(
-    applyMiddleware(...middlewares),
-    ...enhancers
-  ))
+  const store = createStore(
+    reducer,
+    initialState,
+    compose(
+      applyMiddleware(...middlewares),
+      ...enhancers
+    )
+  ) as AeruxStore
 
   // initial reducers
   store.asyncReducers = {}
@@ -52,6 +74,8 @@ export default ({
   store.hotReplaceReducer = (reducers: ReducersMapObject): void => {
     store.replaceReducer(makeRootReducer(reducers))
   }
+
+  store.actions = {}
 
   return store
 }

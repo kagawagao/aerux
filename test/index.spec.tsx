@@ -1,4 +1,4 @@
-describe('index.js', () => {
+describe('index.ts', () => {
   test('should export correct', () => {
     const { createModel, createStore, connect } = require('../src').default
 

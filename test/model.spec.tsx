@@ -38,9 +38,12 @@ describe('model.js', () => {
   test('create model with defined actions', () => {
     const { actions, reducer } = createModel({
       state: 1,
-      actions: ['add', {
-        set: () => 0
-      }],
+      actions: [
+        'add',
+        {
+          set: () => 0
+        }
+      ],
       reducers: {
         add: state => state + 1
       }
@@ -99,6 +102,7 @@ describe('model.js', () => {
   })
 
   test('create model with invalid reducer', () => {
+    // tslint:disable
     const { reducer } = createModel({
       reducers: []
     })

@@ -1,28 +1,66 @@
-// @flow
 import { createAction, createActions, handleActions } from 'redux-actions'
 import flattenActionMap from 'redux-actions/lib/utils/flattenActionMap'
 import isEmpty from 'lodash/isEmpty'
 import isPlainObject from 'lodash/isPlainObject'
+import { AeruxStore } from './store'
 
-import { type Store, type Reducer } from 'redux'
+declare type Payload = any
 
-const defaultAction = (payload) => payload
+declare type State = any
 
-const defaultReducer = (state, { payload }) => payload
+declare type AeruxActionMap = {
+  [type: string]: Function
+}
 
-const createModel = (model: Model, store: Store): {
-  actions: Map<string, Function>,
-  reducer: Reducer
-} => {
+declare type AeruxAction =
+  | string
+  | Function
+  | string[]
+  | Function[]
+  | AeruxActionMap
+  | Array<string | AeruxActionMap>
+
+declare type ReduxActionPayload = {
+  type: string
+  payload: any
+  meta?: any
+}
+
+interface ReducerFunc {
+  (state: State, action: ReduxActionPayload): State
+}
+
+interface ReducerMap {
+  next?: ReducerFunc
+  throw?: ReducerFunc
+}
+
+interface AeruxReducerMap {
+  [type: string]: ReducerFunc | ReducerMap
+}
+
+export interface IModelConfig {
+  namespace?: string
+  state?: any
+  actions?: AeruxAction | AeruxAction[]
+  reducers?: AeruxReducerMap
+}
+
+export interface AeruxModel {
+  actions: AeruxActionMap
+  reducer: Function
+}
+
+const defaultAction = (payload: Payload) => payload
+
+const defaultReducer = (state: State, { payload }: ReduxActionPayload) =>
+  <State>payload
+
+const createModel = (model: IModelConfig, store?: AeruxStore): AeruxModel => {
   if (!isPlainObject(model)) {
     throw new TypeError('Invalid `model` present')
   }
-  let {
-    namespace,
-    state = null,
-    actions = {},
-    reducers = {}
-  } = model
+  let { namespace, state = null, actions = {}, reducers = {} } = model
 
   let tempActions: {
     [x: string]: any
@@ -33,7 +71,7 @@ const createModel = (model: Model, store: Store): {
   }
 
   if (Array.isArray(actions)) {
-    actions.forEach((action) => {
+    actions.forEach(action => {
       if (typeof action === 'string') {
         tempActions[action] = defaultAction
       } else if (isPlainObject(action)) {
