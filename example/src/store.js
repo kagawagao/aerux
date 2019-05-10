@@ -1,4 +1,4 @@
-import { createStore } from 'aerux'
+import { createStore } from '../../es'
 import promiseMiddleware from 'redux-promise'
 
 // middleware
@@ -15,7 +15,8 @@ let composeWithEnhancer
 
 // use redux chrome extension in development
 if (process.env.NODE_ENV === 'development') {
-  const composeWithDevToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  const composeWithDevToolsExtension =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   if (typeof composeWithDevToolsExtension === 'function') {
     composeWithEnhancer = composeWithDevToolsExtension
   } else {

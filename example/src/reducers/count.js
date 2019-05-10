@@ -1,4 +1,4 @@
-import { createModel } from 'aerux'
+import { createModel } from '../../es'
 
 export const { actions, reducer } = createModel({
   namespace: 'count',

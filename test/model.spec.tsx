@@ -36,31 +36,31 @@ describe('model.js', () => {
   })
 
   test('create model with defined actions', () => {
-    const { actions, reducer } = createModel({
-      state: 1,
-      actions: [
-        'add',
-        {
-          set: () => 0
-        }
-      ],
-      reducers: {
-        add: state => state + 1
-      }
-    })
     const createStore = require('../src/store').default
 
-    const store = createStore({
-      initialReducers: {
-        test: reducer
-      }
-    })
+    const store = createStore()
+    const { actions } = createModel(
+      {
+        namespace: 'test',
+        state: 1,
+        actions: [
+          'add',
+          {
+            set: () => 0
+          }
+        ],
+        reducers: {
+          add: state => state + 1
+        }
+      },
+      store
+    )
 
     const state = store.getState()
 
     expect(state).toHaveProperty('test', 1)
 
-    store.dispatch(actions.add())
+    store.actions.test.add()
 
     const state1 = store.getState()
 

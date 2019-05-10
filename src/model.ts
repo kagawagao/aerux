@@ -40,7 +40,7 @@ interface AeruxReducerMap {
 }
 
 export interface IModelConfig {
-  namespace?: string
+  namespace: string
   state?: any
   actions?: AeruxAction | AeruxAction[]
   reducers?: AeruxReducerMap
@@ -98,12 +98,22 @@ const createModel = (model: IModelConfig, store?: AeruxStore): AeruxModel => {
 
   const reducer = handleActions(reducers, state)
 
-  if (namespace && store && typeof store.injectReducer === 'function') {
-    store.injectReducer(namespace, reducer)
-    // create initial state action
-    const initialStateAction = createAction(`${namespace}/@@INIT`)
-    // initial state
-    store.dispatch(initialStateAction())
+  if (namespace && store) {
+    store.actions[namespace] = {}
+
+    Object.keys(createdActions).map(key => {
+      store.actions[namespace][key] = (...args) => {
+        store.dispatch(createdActions[key](...args))
+      }
+    })
+
+    if (typeof store.injectReducer === 'function') {
+      store.injectReducer(namespace, reducer)
+      // create initial state action
+      const initialStateAction = createAction(`${namespace}/@@INIT`)
+      // initial state
+      store.dispatch(initialStateAction())
+    }
   }
 
   return {
