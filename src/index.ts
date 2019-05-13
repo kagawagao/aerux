@@ -12,7 +12,7 @@ export interface AeruxNamespaceActionMap {
 
 let store: AeruxStore
 
-const actions: AeruxNamespaceActionMap = {}
+export const actions: AeruxNamespaceActionMap = {}
 
 export const createStore = (option: StoreOption = {}): AeruxStore => {
   if (!store) {

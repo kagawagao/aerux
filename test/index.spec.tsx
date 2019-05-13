@@ -8,8 +8,13 @@ describe('index.ts', () => {
   })
 
   test('no duplicate store created', () => {
-    const { createStore } = require('../src')
-    const store = createStore()
+    const { createStore } = require('../src').default
+    const store = createStore({
+      middlewares: [],
+      enhancers: [],
+      initialReducers: {},
+      initialState: {}
+    })
 
     const store2 = createStore()
 
@@ -37,7 +42,7 @@ describe('index.ts', () => {
     const store = createStore()
 
     createModel({
-      namespace: 'test',
+      namespace: 'count',
       state: 1,
       actions: {
         add: () => {}
@@ -51,12 +56,11 @@ describe('index.ts', () => {
 
     const state = store.getState()
 
-    expect(state).toHaveProperty('test', 1)
+    expect(state).toHaveProperty('count', 1)
 
-    actions.test.add()
+    actions.count.add()
     const state2 = store.getState()
-    console.log(state2)
-    expect(state2).toHaveProperty('test', 2)
+    expect(state2).toHaveProperty('count', 2)
   })
 
   test('no duplicate inject', () => {
