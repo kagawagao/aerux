@@ -1,3 +1,4 @@
+/* tslint:disable */
 import createModel from '../src/model'
 // import createStore from '../src/store'
 
@@ -37,7 +38,6 @@ describe('model.js', () => {
 
   test('create model with defined actions', () => {
     const createStore = require('../src/store').default
-
     const store = createStore()
     const { actions } = createModel(
       {

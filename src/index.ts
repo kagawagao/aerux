@@ -2,7 +2,17 @@ import _createStore, { AeruxStore, StoreOption } from './store'
 import _createModel, { IModelConfig, AeruxModel } from './model'
 import _connect from './connect'
 
+interface AeruxActionMap {
+  [actionName: string]: (...args: any[]) => any
+}
+
+export interface AeruxNamespaceActionMap {
+  [namespace: string]: AeruxActionMap
+}
+
 let store: AeruxStore
+
+const actions: AeruxNamespaceActionMap = {}
 
 export const createStore = (option: StoreOption = {}): AeruxStore => {
   if (!store) {
@@ -26,12 +36,13 @@ export const createStore = (option: StoreOption = {}): AeruxStore => {
 }
 
 export const createModel = (model: IModelConfig): AeruxModel =>
-  _createModel(model, store)
+  _createModel(model, store, actions)
 
 export const connect = _connect
 
 export default {
   createStore,
   createModel,
-  connect
+  connect,
+  actions
 }
