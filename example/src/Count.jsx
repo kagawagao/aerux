@@ -1,23 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'aerux'
-import { actions } from './reducers/count'
+import { connect, actions } from 'aerux'
+import './reducers/count'
 
 class Count extends React.Component {
   static propTypes = {
-    plus: PropTypes.func,
-    minus: PropTypes.func,
-    reset: PropTypes.func,
     count: PropTypes.number
   }
-  render () {
+  render() {
     const { plus, minus, reset, count } = this.props
     return (
       <div>
         <span>{count}</span>
-        <button onClick={() => plus(2)}>+</button>
-        <button onClick={() => minus(3)}>-</button>
-        <button onClick={() => reset(0)}>Reset</button>
+        <button onClick={() => actions.count.plus(2)}>+</button>
+        <button onClick={() => actions.count.minus(3)}>-</button>
+        <button onClick={() => actions.count.reset(0)}>Reset</button>
       </div>
     )
   }
@@ -25,4 +22,4 @@ class Count extends React.Component {
 
 export default connect(state => ({
   count: state.count
-}), actions)(Count)
+}))(Count)

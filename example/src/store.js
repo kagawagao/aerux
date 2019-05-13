@@ -1,4 +1,4 @@
-import { createStore } from '../../es'
+import { createStore } from 'aerux'
 import promiseMiddleware from 'redux-promise'
 
 // middleware
