@@ -14,7 +14,7 @@
     "lint": "tslint  -p .",
     "lint:fix": "tslint  -p . --fix",
     "flow": "flow",
-    "preversion": "npm run test",
+    "preversion": "npm run build",
     "coverage": "npm run test && cat ./coverage/lcov.info | coveralls",
     "publishOnly": "npm run build"
   },
