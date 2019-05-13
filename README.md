@@ -20,9 +20,9 @@ npm install aerux
 
 ```js
 // es6
-import { createStore } from 'aerux'
+import { createStore, createModel, connect, actions } from 'aerux'
 // or
-const { createStore } = require('aerux')
+const { createStore, createModel, connect, actions } = require('aerux')
 
 const store = createStore(options)
 
@@ -46,7 +46,6 @@ export const { actions, reducer } = createModel({
 
 // Count.jsx
 import { connect } from 'aerux'
-import { actions } from './reducers/count'
 
 class Count extends React.Component {
   render() {
@@ -54,12 +53,9 @@ class Count extends React.Component {
   }
 }
 
-export default connect(
-  state => ({
-    count: state.count
-  }),
-  actions
-)(Count)
+export default connect(state => ({
+  count: state.count
+}))(Count)
 
 // App.jsx
 import { Provider } from 'react-redux'
@@ -143,9 +139,19 @@ connect(
 )(Component)
 ```
 
-### `store.actions[namespace][action]`
+### `actions`
 
-> injected action which have been created in `createModel`, you can call it directly
+> action which created in `createModel` will be auto injected to it, you can call it directly
+
+`actions[namespace][actionName]`
+
+```js
+actions.count.add()
+```
+
+### `store.actions[namespace][actionName]`
+
+> another alias for `actions`
 
 ```js
 store.actions.count.add()
