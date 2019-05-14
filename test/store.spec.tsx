@@ -1,8 +1,11 @@
 import createStore from '../src/store'
+import { compose } from 'redux'
 
 describe('store.js', () => {
   test('normal create store', () => {
-    const store = createStore()
+    const store = createStore({
+      compose
+    })
 
     expect(store).toHaveProperty('hotReplaceReducer')
     expect(store).toHaveProperty('injectReducer')

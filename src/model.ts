@@ -120,13 +120,11 @@ const createModel = (
       }
     })
 
-    if (typeof store.injectReducer === 'function') {
-      store.injectReducer(namespace, reducer)
-      // create initial state action
-      const initialStateAction = createAction(`${namespace}/@@INIT`)
-      // initial state
-      store.dispatch(initialStateAction())
-    }
+    store.injectReducer(namespace, reducer)
+    // create initial state action
+    const initialStateAction = createAction(`${namespace}/@@INIT`)
+    // initial state
+    store.dispatch(initialStateAction())
   }
 
   return {
