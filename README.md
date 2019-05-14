@@ -112,6 +112,8 @@ const { actions, reducer } = createModel({
 | `actions`   | redux actions   | `string`/`Array<string>`/`Map<string, function>`/`{}` | `true`      |
 | `reducers`  | action handlers | `Map<string, function>`                               | `{}`        | `true`   |
 
+> **Note**: if you create model after create store, you can use `actions` from `aerux` directly
+
 #### Notes
 
 - `namespace`: if you present `namespace` and `store` is created, reducer will be auto injected to `store`
@@ -128,6 +130,16 @@ const { actions, reducer } = createModel({
   const defaultReducer = (state, { payload }) => payload
   ```
 
+### `actions`
+
+> action which created in `createModel` will be auto injected to it, you can call it directly
+
+`actions[namespace][actionName]`
+
+```js
+actions.count.add()
+```
+
 ### `connect`
 
 > connect store and component like `redux.connect`, but much better
@@ -139,14 +151,21 @@ connect(
 )(Component)
 ```
 
-### `actions`
-
-> action which created in `createModel` will be auto injected to it, you can call it directly
-
-`actions[namespace][actionName]`
+> **Note**: if you create model after create store, you can use `actions` from `aerux` directly, no `connect` `actions` need, ex:
 
 ```js
-actions.count.add()
+import { actions } from 'aerux'
+
+class DemoComponent extends React.Component {
+  add = () => {
+    actions.count.add()
+  }
+  render() {
+    // ...
+  }
+}
+
+connect(mapStateToProps)(DemoComponent)
 ```
 
 ### `store.actions[namespace][actionName]`
