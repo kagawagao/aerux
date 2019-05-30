@@ -151,7 +151,7 @@ connect(
 )(Component)
 ```
 
-> **Note**: if you create model after create store, you can use `actions` from `aerux` directly, no `connect` `actions` need, ex:
+> **Note**: you can use `actions` from `aerux` directly, no `connect` `actions` need, ex:
 
 ```js
 import { actions } from 'aerux'
