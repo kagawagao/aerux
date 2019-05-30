@@ -60,12 +60,6 @@ describe('model.js', () => {
 
     expect(state).toHaveProperty('test', 1)
 
-    store.actions.test.add()
-
-    const state1 = store.getState()
-
-    expect(state1).toHaveProperty('test', 2)
-
     store.dispatch(actions.set())
 
     const state2 = store.getState()

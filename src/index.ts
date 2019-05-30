@@ -30,13 +30,35 @@ export const createStore = (option: StoreOption = {}): AeruxStore => {
       initialState,
       compose
     })
+    store.actions = actions
   }
 
   return store
 }
 
-export const createModel = (model: IModelConfig): AeruxModel =>
-  _createModel(model, store, actions)
+export const createModel = (model: IModelConfig): AeruxModel => {
+  const { namespace, actions: createdActions, reducer } = _createModel(
+    model,
+    store
+  )
+
+  actions[namespace] = {}
+
+  Object.keys(createdActions).map(key => {
+    const action = (...args: any[]) => {
+      if (store) {
+        store.dispatch(createdActions[key](...args))
+      }
+    }
+    actions[namespace][key] = action
+  })
+
+  return {
+    namespace,
+    actions: createdActions,
+    reducer
+  }
+}
 
 export const connect = _connect
 

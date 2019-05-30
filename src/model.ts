@@ -3,7 +3,6 @@ import flattenActionMap from 'redux-actions/lib/utils/flattenActionMap'
 import isEmpty from 'lodash/isEmpty'
 import isPlainObject from 'lodash/isPlainObject'
 import { AeruxStore } from './store'
-import { AeruxNamespaceActionMap } from './index'
 
 declare type Payload = any
 
@@ -48,6 +47,7 @@ export interface IModelConfig {
 }
 
 export interface AeruxModel {
+  namespace: string
   actions: AeruxActionMap
   reducer: Function
 }
@@ -57,11 +57,7 @@ const defaultAction = (payload: Payload) => payload
 const defaultReducer = (state: State, { payload }: ReduxActionPayload) =>
   <State>payload
 
-const createModel = (
-  model: IModelConfig,
-  store?: AeruxStore,
-  createdActionMap?: AeruxNamespaceActionMap
-): AeruxModel => {
+const createModel = (model: IModelConfig, store?: AeruxStore): AeruxModel => {
   if (!isPlainObject(model)) {
     throw new TypeError('Invalid `model` present')
   }
@@ -104,22 +100,6 @@ const createModel = (
   const reducer = handleActions(reducers, state)
 
   if (namespace && store) {
-    store.actions[namespace] = {}
-
-    if (createdActionMap) {
-      createdActionMap[namespace] = {}
-    }
-
-    Object.keys(createdActions).map(key => {
-      const action = (...args: any[]) => {
-        store.dispatch(createdActions[key](...args))
-      }
-      store.actions[namespace][key] = action
-      if (createdActionMap) {
-        createdActionMap[namespace][key] = action
-      }
-    })
-
     store.injectReducer(namespace, reducer)
     // create initial state action
     const initialStateAction = createAction(`${namespace}/@@INIT`)
@@ -128,6 +108,7 @@ const createModel = (
   }
 
   return {
+    namespace,
     actions: createdActions,
     reducer
   }
