@@ -1,4 +1,7 @@
 describe('index.ts', () => {
+  afterEach(() => {
+    jest.resetModules()
+  })
   test('should export correct', () => {
     const { createModel, createStore, connect } = require('../src').default
 
@@ -39,9 +42,7 @@ describe('index.ts', () => {
   test('auto inject actions', () => {
     const { createModel, createStore, actions } = require('../src').default
 
-    const store = createStore()
-
-    createModel({
+    const { reducer } = createModel({
       namespace: 'count',
       state: 1,
       actions: {
@@ -51,6 +52,14 @@ describe('index.ts', () => {
         add: (state: number) => {
           return state + 1
         }
+      }
+    })
+
+    actions.count.add()
+
+    const store = createStore({
+      initialReducers: {
+        count: reducer
       }
     })
 
