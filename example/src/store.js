@@ -30,7 +30,9 @@ const store = createStore({
   enhancers,
   compose: composeWithEnhancer,
   initialState,
-  initialReducers: {}
+  initialReducers: {
+    count: require('./reducers/count').reducer
+  }
 })
 
 export default store

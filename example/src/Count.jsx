@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect, actions } from 'aerux'
-import './reducers/count'
 
 class Count extends React.Component {
   static propTypes = {
