@@ -4,7 +4,7 @@
   "description": "An easy way to use redux with react",
   "main": "lib/index.js",
   "module": "es/index.js",
-  "types": "types/index.d.ts",
+  "types": "typings/index.d.ts",
   "scripts": {
     "test": "jest",
     "prebuild": "npm run test",
@@ -83,7 +83,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,css,json,md}": [
+    "*.{ts,js,css,json,md}": [
       "prettier --write",
       "git add"
     ]
