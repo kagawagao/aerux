@@ -6,6 +6,7 @@
 [![Build Status](https://travis-ci.org/kagawagao/aerux.svg?branch=master)](https://travis-ci.org/kagawagao/aerux)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
 [![Coverage Status](https://coveralls.io/repos/github/kagawagao/aerux/badge.svg?branch=master)](https://coveralls.io/github/kagawagao/aerux?branch=master)
+[![codecov](https://codecov.io/gh/kagawagao/aerux/branch/master/graph/badge.svg)](https://codecov.io/gh/kagawagao/aerux)
 [![Known Vulnerabilities](https://snyk.io/test/github/kagawagao/aerux/badge.svg?targetFile=package.json)](https://snyk.io/test/github/kagawagao/aerux?targetFile=package.json)
 
 An easy way to use redux with react
