@@ -51,7 +51,7 @@
     "@types/react-redux": "^7.0.9",
     "@types/redux-actions": "^2.6.1",
     "coveralls": "^3.0.4",
-    "husky": "^2.4.0",
+    "husky": "^3.0.0",
     "jest": "^24.8.0",
     "lint-staged": "^8.2.0",
     "lodash": "^4.17.11",
