@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./start"
+    "start": "node ./start",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "author": "",
   "license": "MIT",
@@ -26,6 +28,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "redux-logger": "^3.0.6",
-    "redux-promise": "^0.5.3"
-  }
+    "redux-promise": "^0.5.3",
+    "snyk": "^1.189.0"
+  },
+  "snyk": true
 }
