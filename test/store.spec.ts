@@ -13,7 +13,7 @@ describe('store.js', () => {
 
   test('create store with initial state', () => {
     const store = createStore({
-      initialState: {
+      state: {
         test: ''
       }
     })
@@ -25,7 +25,7 @@ describe('store.js', () => {
 
   test('create store with initial reducer', () => {
     const store = createStore({
-      initialReducers: {
+      reducers: {
         test: (state = {}, { type, payload }) => {
           return type === 'test' ? payload : state
         }
@@ -61,7 +61,7 @@ describe('store.js', () => {
 
   test('hot replace', () => {
     const store = createStore({
-      initialReducers: {
+      reducers: {
         test: (state = {}, { type, payload }) => {
           return type === 'test' ? payload : state
         }

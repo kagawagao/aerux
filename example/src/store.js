@@ -29,8 +29,8 @@ const store = createStore({
   middlewares,
   enhancers,
   compose: composeWithEnhancer,
-  initialState,
-  initialReducers: {
+  state: initialState,
+  reducers: {
     count: require('./reducers/count').reducer
   }
 })

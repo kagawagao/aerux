@@ -5,15 +5,20 @@ import {
   combineReducers,
   Store,
   Reducer,
-  ReducersMapObject
+  AnyAction,
+  Action
 } from 'redux'
 import isEmpty from 'lodash/isEmpty'
+
+export type ReducersMapObject<S = any, A extends Action = AnyAction> = {
+  [K in keyof S]: Reducer<S[K], A>
+}
 
 export interface StoreOption {
   middlewares?: any[]
   enhancers?: any[]
-  initialReducers?: ReducersMapObject
-  initialState?: any
+  reducers?: ReducersMapObject
+  state?: any
   compose?: any
 }
 
@@ -31,20 +36,20 @@ export interface AeruxStore extends Store {
 export default ({
   middlewares = [],
   enhancers = [],
-  initialReducers = {},
-  initialState = {},
+  reducers = {},
+  state = {},
   compose = reduxCompose
 }: StoreOption = {}): AeruxStore => {
   // make root reducer
   const makeRootReducer = (asyncReducers: ReducersMapObject = {}): Reducer => {
     return combineReducers({
-      ...initialReducers,
+      ...reducers,
       ...asyncReducers
     })
   }
 
   let reducer
-  if (isEmpty(initialReducers)) {
+  if (isEmpty(reducers)) {
     reducer = state => state
   } else {
     reducer = makeRootReducer()
@@ -52,7 +57,7 @@ export default ({
 
   const store = createStore(
     reducer,
-    initialState,
+    state,
     compose(
       applyMiddleware(...middlewares),
       ...enhancers

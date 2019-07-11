@@ -15,8 +15,8 @@ describe('index.ts', () => {
     const store = createStore({
       middlewares: [],
       enhancers: [],
-      initialReducers: {},
-      initialState: {}
+      reducers: {},
+      state: {}
     })
 
     const store2 = createStore()
@@ -58,7 +58,7 @@ describe('index.ts', () => {
     actions.count.add()
 
     const store = createStore({
-      initialReducers: {
+      reducers: {
         count: reducer
       }
     })
