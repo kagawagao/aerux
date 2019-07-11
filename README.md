@@ -85,13 +85,13 @@ createStore({
 })
 ```
 
-| name              | description            | type                 | default         | optional |
-| ----------------- | ---------------------- | -------------------- | --------------- | -------- |
-| `middlewares`     | redux middleware       | `Array`              | `[]`            | `true`   |
-| `enhancers`       | redux enhancer         | `Array`              | `[]`            | `true`   |
-| `compose`         | used for redux devtool | -                    | `redux.compose` | `true`   |
-| `initialState`    | initial state          | `Object`             | `{}`            | `true`   |
-| `initialReducers` | initial reducers       | valid redux reducers | `{}`            | `true`   |
+| name          | description            | type                | default         | optional |
+| ------------- | ---------------------- | ------------------- | --------------- | -------- |
+| `middlewares` | redux middleware       | `Array`             | `[]`            | `true`   |
+| `enhancers`   | redux enhancer         | `Array`             | `[]`            | `true`   |
+| `compose`     | used for redux devtool | -                   | `redux.compose` | `true`   |
+| `state`       | initial state          | `any`               | `{}`            | `true`   |
+| `reducers`    | initial reducers       | `ReducersMapObject` | `{}`            | `true`   |
 
 ### `createModel`
 
@@ -106,12 +106,12 @@ const { actions, reducer } = createModel({
 })
 ```
 
-| name        | description     | type                                                  | default     | optional |
-| ----------- | --------------- | ----------------------------------------------------- | ----------- | -------- |
-| `namespace` | namespace       | `string`                                              | `undefined` | `true`   |
-| `state`     | initial state   | `*`                                                   | `null`      | `true`   |
-| `actions`   | redux actions   | `string`/`Array<string>`/`Map<string, function>`/`{}` | `true`      |
-| `reducers`  | action handlers | `Map<string, function>`                               | `{}`        | `true`   |
+| name        | description     | type                                                                                                       | default     | optional |
+| ----------- | --------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | -------- |
+| `namespace` | namespace       | `string`                                                                                                   | `undefined` | `false`  |
+| `state`     | initial state   | `any`                                                                                                      | `null`      | `true`   |
+| `actions`   | redux actions   | `ActionMap<Payload, Meta> | string`                                                                        | `true`      |
+| `reducers`  | action handlers | `ReduxCompatibleReducer<State, Action<Payload>> | ReduxCompatibleReducerMeta<State, Action<Payload>, any>` | `{}`        | `true`   |
 
 > **Note**: if you create model after create store, you can use `actions` from `aerux` directly
 
@@ -119,17 +119,8 @@ const { actions, reducer } = createModel({
 
 - `namespace`: if you present `namespace` and `store` is created, reducer will be auto injected to `store`
 
-- `actions`: `actionCreator` is created by `redux-actions`, if `action` is a `string`, `aerux` will create a default action for it
-
-  ```js
-  const defaultAction = payload => payload
-  ```
-
-- if `reducers` is empty, default action handler will be created
-
-  ```js
-  const defaultReducer = (state, { payload }) => payload
-  ```
+- `actions`: `actionCreator` is created by `redux-actions`
+- `reducers`: created by `redux-actions`
 
 ### `actions`
 

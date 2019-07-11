@@ -1,61 +1,42 @@
-import { createAction, createActions, handleActions } from 'redux-actions'
-import flattenActionMap from 'redux-actions/lib/utils/flattenActionMap'
-import isEmpty from 'lodash/isEmpty'
+import {
+  createAction,
+  createActions,
+  handleActions,
+  ActionMap,
+  ReduxCompatibleReducer,
+  ReduxCompatibleReducerMeta,
+  ReducerMapMeta,
+  ReducerMap,
+  ActionFunctionAny
+} from 'redux-actions'
 import isPlainObject from 'lodash/isPlainObject'
 import { AeruxStore } from './store'
+import { Action } from 'redux'
 
 declare type Payload = any
 
 declare type State = any
 
-declare type AeruxActionMap = {
-  [type: string]: Function
-}
-
-declare type AeruxAction =
-  | string
-  | Function
-  | string[]
-  | Function[]
-  | AeruxActionMap
-  | Array<string | AeruxActionMap>
-
-declare type ReduxActionPayload = {
-  type: string
-  payload: any
-  meta?: any
-}
-
-interface ReducerFunc {
-  (state: State, action: ReduxActionPayload): State
-}
-
-interface ReducerMap {
-  next?: ReducerFunc
-  throw?: ReducerFunc
-}
-
-interface AeruxReducerMap {
-  [type: string]: ReducerFunc | ReducerMap
-}
+declare type Meta = any
 
 export interface IModelConfig {
   namespace: string
-  state?: any
-  actions?: AeruxAction | AeruxAction[]
-  reducers?: AeruxReducerMap
+  state?: State
+  actions?: ActionMap<Payload, Meta> | string
+  reducers?: ReducerMapMeta<State, Payload, Meta> | ReducerMap<State, Payload>
+}
+
+export interface CreateActionMap {
+  [actionName: string]: ActionFunctionAny<Action<Payload>>
 }
 
 export interface AeruxModel {
   namespace: string
-  actions: AeruxActionMap
-  reducer: Function
+  actions: CreateActionMap
+  reducer:
+    | ReduxCompatibleReducer<State, Action<Payload>>
+    | ReduxCompatibleReducerMeta<State, Action<Payload>, any>
 }
-
-const defaultAction = (payload: Payload) => payload
-
-const defaultReducer = (state: State, { payload }: ReduxActionPayload) =>
-  <State>payload
 
 const createModel = (model: IModelConfig, store?: AeruxStore): AeruxModel => {
   if (!isPlainObject(model)) {
@@ -63,39 +44,11 @@ const createModel = (model: IModelConfig, store?: AeruxStore): AeruxModel => {
   }
   let { namespace, state = null, actions = {}, reducers = {} } = model
 
-  let tempActions: {
-    [x: string]: any
-  } = {}
-
-  if (typeof actions === 'string') {
-    actions = [actions]
-  }
-
-  if (Array.isArray(actions)) {
-    actions.forEach(action => {
-      if (typeof action === 'string') {
-        tempActions[action] = defaultAction
-      } else if (isPlainObject(action)) {
-        tempActions = { ...tempActions, ...action }
-      }
-    })
-  } else {
-    tempActions = actions
-  }
-
   if (!isPlainObject(reducers)) {
     reducers = {}
   }
 
-  const createdActions = createActions(tempActions)
-
-  if (!isEmpty(tempActions)) {
-    Object.keys(flattenActionMap(tempActions)).forEach(type => {
-      if (!reducers[type]) {
-        reducers[type] = defaultReducer
-      }
-    })
-  }
+  const createdActions = createActions(actions)
 
   const reducer = handleActions(reducers, state)
 
