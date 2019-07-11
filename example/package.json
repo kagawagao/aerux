@@ -23,10 +23,12 @@
   },
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
-    "aerux": "^3.2.2",
+    "aerux": "^4.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
+    "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-promise": "^0.5.3",
     "snyk": "^1.189.0"
