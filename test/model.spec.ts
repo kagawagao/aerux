@@ -5,6 +5,7 @@ import createModel from '../src/model'
 describe('model.js', () => {
   test('normal create model', () => {
     const { actions } = createModel({
+      namespace: 'test',
       state: 1,
       actions: 'test'
     })
@@ -20,13 +21,14 @@ describe('model.js', () => {
 
   test('create model with initial state', () => {
     const { reducer } = createModel({
+      namespace: 'test',
       state: 1
     })
 
     const createStore = require('../src/store').default
 
     const store = createStore({
-      initialReducers: {
+      reducers: {
         test: reducer
       }
     })
@@ -43,14 +45,11 @@ describe('model.js', () => {
       {
         namespace: 'test',
         state: 1,
-        actions: [
-          'add',
-          {
-            set: () => 0
-          }
-        ],
+        actions: {
+          set: () => 0
+        },
         reducers: {
-          add: state => state + 1
+          set: (state, { payload }) => payload
         }
       },
       store
@@ -88,11 +87,12 @@ describe('model.js', () => {
   })
 
   test('create model with invalid action', () => {
-    const { actions } = createModel({
-      actions: [['xxx']]
-    })
-
-    expect(actions.xxx).not.toBeDefined()
+    const test = () => {
+      createModel({
+        actions: [['xxx']]
+      })
+    }
+    expect(test).toThrowError()
   })
 
   test('create model with invalid reducer', () => {
