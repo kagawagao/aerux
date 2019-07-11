@@ -19,15 +19,15 @@ export const createStore = (option: StoreOption = {}): AeruxStore => {
     const {
       middlewares = [],
       enhancers = [],
-      initialReducers = {},
-      initialState = {},
+      reducers = {},
+      state = {},
       compose
     } = option
     store = _createStore({
       middlewares,
       enhancers,
-      initialReducers,
-      initialState,
+      reducers,
+      state,
       compose
     })
     store.actions = actions
