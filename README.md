@@ -106,12 +106,12 @@ const { actions, reducer } = createModel({
 })
 ```
 
-| name        | description     | type                                                                                                       | default     | optional |
-| ----------- | --------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | -------- |
-| `namespace` | namespace       | `string`                                                                                                   | `undefined` | `false`  |
-| `state`     | initial state   | `any`                                                                                                      | `null`      | `true`   |
-| `actions`   | redux actions   | `ActionMap<Payload, Meta> | string`                                                                        | `true`      |
-| `reducers`  | action handlers | `ReduxCompatibleReducer<State, Action<Payload>> | ReduxCompatibleReducerMeta<State, Action<Payload>, any>` | `{}`        | `true`   |
+| name        | description     | type                                                                                                        | default     | optional |
+| ----------- | --------------- | ----------------------------------------------------------------------------------------------------------- | ----------- | -------- |
+| `namespace` | namespace       | `string`                                                                                                    | `undefined` | `false`  |
+| `state`     | initial state   | `any`                                                                                                       | `null`      | `true`   |
+| `actions`   | redux actions   | `ActionMap<Payload, Meta> | string`                                                                         | `true`      |
+| `reducers`  | action handlers | `ReduxCompatibleReducer<State, Action<Payload>> \| ReduxCompatibleReducerMeta<State, Action<Payload>, any>` | `{}`        | `true`   |
 
 > **Note**: if you create model after create store, you can use `actions` from `aerux` directly
 
