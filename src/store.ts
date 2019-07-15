@@ -6,7 +6,9 @@ import {
   Store,
   Reducer,
   AnyAction,
-  Action
+  Action,
+  Middleware,
+  StoreEnhancer
 } from 'redux'
 import isEmpty from 'lodash/isEmpty'
 
@@ -15,8 +17,8 @@ export type ReducersMapObject<S = any, A extends Action = AnyAction> = {
 }
 
 export interface StoreOption {
-  middlewares?: any[]
-  enhancers?: any[]
+  middlewares?: Middleware[]
+  enhancers?: StoreEnhancer[]
   reducers?: ReducersMapObject
   state?: any
   compose?: any
@@ -31,6 +33,7 @@ export interface AeruxStore extends Store {
       [type: string]: Function
     }
   }
+  [x: string]: any
 }
 
 export default ({
