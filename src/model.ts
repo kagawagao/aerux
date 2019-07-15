@@ -48,9 +48,13 @@ const createModel = (model: IModelConfig, store?: AeruxStore): AeruxModel => {
     reducers = {}
   }
 
-  const createdActions = createActions(actions)
+  const options = {
+    prefix: namespace
+  }
 
-  const reducer = handleActions(reducers, state)
+  const createdActions = createActions(actions, options)
+
+  const reducer = handleActions(reducers, state, options)
 
   if (namespace && store) {
     store.injectReducer(namespace, reducer)
