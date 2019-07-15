@@ -10,7 +10,6 @@ export const { actions, reducer } = createModel({
   },
   reducers: {
     plus: (state, { payload, meta }) => {
-      console.log(meta)
       return state + payload
     },
     minus: (state, { payload }) => state - payload,
