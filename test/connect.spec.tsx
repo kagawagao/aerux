@@ -1,6 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import renderer, { act } from 'react-test-renderer'
+import { create, act } from 'react-test-renderer'
 
 class TestCase extends React.Component {
   render() {
@@ -29,7 +29,7 @@ describe('connect', () => {
       actions
     )(TestCase)
 
-    const testRenderer = renderer.create(
+    const testRenderer = create(
       <Provider store={store}>
         <Test />
       </Provider>
@@ -63,7 +63,7 @@ describe('connect', () => {
 
     const Test = connect()(TestCase)
 
-    const testRenderer = renderer.create(
+    const testRenderer = create(
       <Provider store={store}>
         <Test />
       </Provider>
