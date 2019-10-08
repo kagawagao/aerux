@@ -6,6 +6,16 @@ patch:
   SNYK-JS-LODASH-450202:
     - '@babel/preset-react > @babel/plugin-transform-react-jsx > @babel/helper-builder-react-jsx > @babel/types > lodash':
         patched: '2019-07-03T22:47:56.683Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/dep-graph > lodash:
+        patched: '2019-10-08T01:25:27.452Z'
+    - snyk > snyk-nuget-plugin > dotnet-deps-parser > lodash:
+        patched: '2019-10-08T01:25:27.452Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/dep-graph > graphlib > lodash:
+        patched: '2019-10-08T01:25:27.452Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/cocoapods-lockfile-parser > @snyk/dep-graph > lodash:
+        patched: '2019-10-08T01:25:27.452Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/cocoapods-lockfile-parser > @snyk/dep-graph > graphlib > lodash:
+        patched: '2019-10-08T01:25:27.452Z'
   SNYK-JS-HTTPSPROXYAGENT-469131:
     - snyk > proxy-agent > https-proxy-agent:
         patched: '2019-10-03T22:46:44.738Z'
