@@ -33,12 +33,10 @@ import { createModel } from 'aerux'
 export const { actions, reducer } = createModel({
   namespace: 'count',
   state: 0,
-  actions: [
-    'plus',
-    {
-      minus: count => count
-    }
-  ],
+  actions: {
+    plus: count => count,
+    minus: count => count
+  },
   reducers: {
     plus: (state, { payload }) => state + payload,
     minus: (state, { payload }) => state - payload
@@ -80,8 +78,8 @@ createStore({
   middlewares,
   enhancers,
   compose,
-  initialState,
-  initialReducers
+  state,
+  reducer
 })
 ```
 
@@ -106,12 +104,12 @@ const { actions, reducer } = createModel({
 })
 ```
 
-| name        | description     | type                                                                                                        | default     | optional |
-| ----------- | --------------- | ----------------------------------------------------------------------------------------------------------- | ----------- | -------- |
-| `namespace` | namespace       | `string`                                                                                                    | `undefined` | `false`  |
-| `state`     | initial state   | `any`                                                                                                       | `null`      | `true`   |
-| `actions`   | redux actions   | `ActionMap<Payload, Meta> | string`                                                                         | `true`      |
-| `reducers`  | action handlers | `ReduxCompatibleReducer<State, Action<Payload>> \| ReduxCompatibleReducerMeta<State, Action<Payload>, any>` | `{}`        | `true`   |
+| name        | description     | type                                                                                                          | default     | optional |
+| ----------- | --------------- | ------------------------------------------------------------------------------------------------------------- | ----------- | -------- |
+| `namespace` | namespace       | `string`                                                                                                      | `undefined` | `false`  |
+| `state`     | initial state   | `any`                                                                                                         | `null`      | `true`   |
+| `actions`   | redux actions   | `ActionMap<Payload, Meta>`                                                                                    | `true`      |
+| `reducers`  | action handlers | `ReduxCompatibleReducer<State, Action<Payload>>` \| `ReduxCompatibleReducerMeta<State, Action<Payload>, any>` | `{}`        | `true`   |
 
 > **Note**: if you create model after create store, you can use `actions` from `aerux` directly
 
