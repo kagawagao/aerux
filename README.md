@@ -79,7 +79,7 @@ createStore({
   enhancers,
   compose,
   state,
-  reducer
+  reducers
 })
 ```
 
@@ -135,10 +135,7 @@ actions.count.add()
 > connect store and component like `redux.connect`, but much better
 
 ```js
-connect(
-  mapStateToProps,
-  actions
-)(Component)
+connect(mapStateToProps, actions)(Component)
 ```
 
 > **Note**: you can use `actions` from `aerux` directly, no `connect` `actions` need, ex:
