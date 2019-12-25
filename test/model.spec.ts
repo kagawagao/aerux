@@ -74,6 +74,7 @@ describe('model.js', () => {
 
   test('create model with action map', () => {
     const { actions } = createModel({
+      state: null,
       actions: {
         test: () => {},
         add: () => {}
@@ -96,6 +97,7 @@ describe('model.js', () => {
   test('create model with invalid reducer', () => {
     // tslint:disable
     const { reducer } = createModel({
+      state: null,
       reducers: []
     })
 
