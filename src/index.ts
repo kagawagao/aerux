@@ -1,5 +1,5 @@
 import _createStore, { AeruxStore, StoreOption } from './store'
-import _createModel, { IModelConfig, AeruxModel } from './model'
+import _createModel, { ModelConfig, AeruxModel } from './model'
 import _connect from './connect'
 
 interface AeruxActionMap {
@@ -14,7 +14,7 @@ let store: AeruxStore
 
 export const actions: AeruxNamespaceActionMap = {}
 
-export const createStore = (option: StoreOption = {}): AeruxStore => {
+export function createStore(option: StoreOption = {}): AeruxStore {
   if (!store) {
     const {
       middlewares = [],
@@ -36,7 +36,9 @@ export const createStore = (option: StoreOption = {}): AeruxStore => {
   return store
 }
 
-export const createModel = (model: IModelConfig): AeruxModel => {
+export function createModel<State = any>(
+  model: ModelConfig<State>
+): AeruxModel<State> {
   const { namespace, actions: createdActions, reducer } = _createModel(
     model,
     store

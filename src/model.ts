@@ -19,30 +19,36 @@ declare type State = any
 
 declare type Meta = any
 
-export interface IModelConfig {
+export interface ModelConfig<State = any> {
   namespace: string
-  state?: State
-  actions?: ActionMap<Payload, Meta> | string
-  reducers?: ReducerMapMeta<State, Payload, Meta> | ReducerMap<State, Payload>
+  state: State
+  actions?: ActionMap<Payload, Meta>
+  reducers?:
+    | ReducerMapMeta<State, Payload, Meta>
+    | ReducerMap<State, Payload>
+    | ReducerMap<State, State>
 }
 
 export interface CreateActionMap {
   [actionName: string]: ActionFunctionAny<Action<Payload>>
 }
 
-export interface AeruxModel {
+export interface AeruxModel<State = any> {
   namespace: string
   actions: CreateActionMap
   reducer:
-    | ReduxCompatibleReducer<State, Action<Payload>>
-    | ReduxCompatibleReducerMeta<State, Action<Payload>, any>
+    | ReduxCompatibleReducer<State, Payload>
+    | ReduxCompatibleReducerMeta<State, Payload, Meta>
 }
 
-const createModel = (model: IModelConfig, store?: AeruxStore): AeruxModel => {
+function createModel<State = any>(
+  model: ModelConfig<State>,
+  store?: AeruxStore
+): AeruxModel<State> {
   if (!isPlainObject(model)) {
     throw new TypeError('Invalid `model` present')
   }
-  let { namespace, state = null, actions = {}, reducers = {} } = model
+  let { namespace, state, actions = {}, reducers = {} } = model
 
   if (!isPlainObject(reducers)) {
     reducers = {}

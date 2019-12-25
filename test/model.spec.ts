@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* tslint:disable */
 import createModel from '../src/model'
 // import createStore from '../src/store'
@@ -7,7 +8,9 @@ describe('model.js', () => {
     const { actions } = createModel({
       namespace: 'test',
       state: 1,
-      actions: 'test'
+      actions: {
+        test: () => ({})
+      }
     })
 
     expect(actions).toHaveProperty('test')
@@ -22,7 +25,10 @@ describe('model.js', () => {
   test('create model with initial state', () => {
     const { reducer } = createModel({
       namespace: 'test',
-      state: 1
+      state: 1,
+      actions: {
+        set: () => 2
+      }
     })
 
     const createStore = require('../src/store').default
@@ -64,14 +70,6 @@ describe('model.js', () => {
     const state2 = store.getState()
 
     expect(state2).toHaveProperty('test', 0)
-  })
-
-  test('create model with string action', () => {
-    const { actions } = createModel({
-      actions: 'test'
-    })
-
-    expect(typeof actions.test).toBe('function')
   })
 
   test('create model with action map', () => {
