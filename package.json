@@ -51,7 +51,7 @@
     "@types/react-test-renderer": "^16.8.3",
     "@types/redux-actions": "^2.6.1",
     "coveralls": "^3.0.8",
-    "husky": "^3.1.0",
+    "husky": "^4.0.9",
     "jest": "^24.8.0",
     "lint-staged": "^9.4.3",
     "prettier": "^1.19.1",
