@@ -21,14 +21,14 @@ export function createStore(option: StoreOption = {}): AeruxStore {
       enhancers = [],
       reducers = {},
       state = {},
-      compose
+      compose,
     } = option
     store = _createStore({
       middlewares,
       enhancers,
       reducers,
       state,
-      compose
+      compose,
     })
     store.actions = actions
   }
@@ -46,19 +46,20 @@ export function createModel<State = any>(
 
   actions[namespace] = {}
 
-  Object.keys(createdActions).map(key => {
+  Object.keys(createdActions).map((key) => {
     const action = (...args: any[]) => {
       if (store) {
         store.dispatch(createdActions[key](...args))
       }
     }
+    action.toString = createdActions[key].toString
     actions[namespace][key] = action
   })
 
   return {
     namespace,
     actions: createdActions,
-    reducer
+    reducer,
   }
 }
 
@@ -68,5 +69,5 @@ export default {
   createStore,
   createModel,
   connect,
-  actions
+  actions,
 }

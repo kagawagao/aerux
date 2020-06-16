@@ -16,7 +16,7 @@ describe('index.ts', () => {
       middlewares: [],
       enhancers: [],
       reducers: {},
-      state: {}
+      state: {},
     })
 
     const store2 = createStore()
@@ -31,7 +31,7 @@ describe('index.ts', () => {
 
     createModel({
       namespace: 'test',
-      state: 1
+      state: 1,
     })
 
     const state = store.getState()
@@ -46,21 +46,23 @@ describe('index.ts', () => {
       namespace: 'count',
       state: 1,
       actions: {
-        add: () => {}
+        add: () => {},
       },
       reducers: {
         add: (state: number) => {
           return state + 1
-        }
-      }
+        },
+      },
     })
+
+    expect(actions.count.add.toString()).toBe('count/add')
 
     actions.count.add()
 
     const store = createStore({
       reducers: {
-        count: reducer
-      }
+        count: reducer,
+      },
     })
 
     const state = store.getState()
@@ -79,7 +81,7 @@ describe('index.ts', () => {
 
     createModel({
       namespace: 'test',
-      state: 1
+      state: 1,
     })
 
     const state = store.getState()
@@ -88,7 +90,7 @@ describe('index.ts', () => {
 
     createModel({
       namespace: 'test',
-      state: 2
+      state: 2,
     })
 
     expect(state).toHaveProperty('test', 1)
